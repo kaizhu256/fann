@@ -7178,24 +7178,6 @@ function _fann_error($errdat,$errno_f,$varargs) {
  $7 = $1;
  do {
   switch ($7|0) {
-  case 21:  {
-   (_strcpy(($errstr|0),(1096|0))|0);
-   break;
-  }
-  case 20:  {
-   $21 = $errstr_max;
-   (_vsnprintf($errstr,$21,1024,$ap)|0);
-   break;
-  }
-  case 19:  {
-   $20 = $errstr_max;
-   (_vsnprintf($errstr,$20,952,$ap)|0);
-   break;
-  }
-  case 18:  {
-   (_strcpy(($errstr|0),(912|0))|0);
-   break;
-  }
   case 17:  {
    $19 = $errstr_max;
    (_vsnprintf($errstr,$19,880,$ap)|0);
@@ -7241,33 +7223,9 @@ function _fann_error($errdat,$errno_f,$varargs) {
    (_vsnprintf($errstr,$15,448,$ap)|0);
    break;
   }
-  case 0:  {
-   STACKTOP = sp;return;
-   break;
-  }
-  case 2:  {
-   $9 = $errstr_max;
-   (_vsnprintf($errstr,$9,72,$ap)|0);
-   break;
-  }
-  case 1:  {
-   $8 = $errstr_max;
-   (_vsnprintf($errstr,$8,16,$ap)|0);
-   break;
-  }
-  case 4:  {
-   $11 = $errstr_max;
-   (_vsnprintf($errstr,$11,208,$ap)|0);
-   break;
-  }
   case 7:  {
    $14 = $errstr_max;
    (_vsnprintf($errstr,$14,392,$ap)|0);
-   break;
-  }
-  case 5:  {
-   $12 = $errstr_max;
-   (_vsnprintf($errstr,$12,264,$ap)|0);
    break;
   }
   case 6:  {
@@ -7275,9 +7233,51 @@ function _fann_error($errdat,$errno_f,$varargs) {
    (_vsnprintf($errstr,$13,328,$ap)|0);
    break;
   }
+  case 18:  {
+   (_strcpy(($errstr|0),(912|0))|0);
+   break;
+  }
+  case 20:  {
+   $21 = $errstr_max;
+   (_vsnprintf($errstr,$21,1024,$ap)|0);
+   break;
+  }
+  case 19:  {
+   $20 = $errstr_max;
+   (_vsnprintf($errstr,$20,952,$ap)|0);
+   break;
+  }
+  case 0:  {
+   STACKTOP = sp;return;
+   break;
+  }
+  case 21:  {
+   (_strcpy(($errstr|0),(1096|0))|0);
+   break;
+  }
+  case 1:  {
+   $8 = $errstr_max;
+   (_vsnprintf($errstr,$8,16,$ap)|0);
+   break;
+  }
+  case 5:  {
+   $12 = $errstr_max;
+   (_vsnprintf($errstr,$12,264,$ap)|0);
+   break;
+  }
+  case 4:  {
+   $11 = $errstr_max;
+   (_vsnprintf($errstr,$11,208,$ap)|0);
+   break;
+  }
   case 3:  {
    $10 = $errstr_max;
    (_vsnprintf($errstr,$10,128,$ap)|0);
+   break;
+  }
+  case 2:  {
+   $9 = $errstr_max;
+   (_vsnprintf($errstr,$9,72,$ap)|0);
    break;
   }
   default: {
@@ -9634,7 +9634,7 @@ function _fann_run($ann,$input) {
      $74 = +HEAPF32[$73>>2];
      $75 = $74 >= 1.0;
      $76 = $0;
-     L14: do {
+     L13: do {
       if ($75) {
        $77 = ((($76)) + 24|0);
        $78 = HEAP32[$77>>2]|0;
@@ -9657,8 +9657,6 @@ function _fann_run($ann,$input) {
        $89 = $i;
        if ((($89|0) == 1)) {
         label = 17;
-       } else if ((($89|0) == 2)) {
-        label = 16;
        } else if ((($89|0) == 3)) {
         $90 = $weights;
         $91 = ((($90)) + 16|0);
@@ -9671,6 +9669,8 @@ function _fann_run($ann,$input) {
         $98 = $neuron_sum;
         $99 = $98 + $97;
         $neuron_sum = $99;
+        label = 16;
+       } else if ((($89|0) == 2)) {
         label = 16;
        }
        if ((label|0) == 16) {
@@ -9705,7 +9705,7 @@ function _fann_run($ann,$input) {
         $119 = $num_connections;
         $120 = ($118|0)!=($119|0);
         if (!($120)) {
-         break L14;
+         break L13;
         }
         $121 = $i;
         $122 = $weights;
@@ -9774,9 +9774,7 @@ function _fann_run($ann,$input) {
        $180 = $179 & 3;
        $i = $180;
        $181 = $i;
-       if ((($181|0) == 2)) {
-        label = 22;
-       } else if ((($181|0) == 3)) {
+       if ((($181|0) == 3)) {
         $182 = $weights;
         $183 = ((($182)) + 16|0);
         $184 = +HEAPF64[$183>>3];
@@ -9792,6 +9790,8 @@ function _fann_run($ann,$input) {
         label = 22;
        } else if ((($181|0) == 1)) {
         label = 23;
+       } else if ((($181|0) == 2)) {
+        label = 22;
        }
        if ((label|0) == 22) {
         label = 0;
@@ -9827,7 +9827,7 @@ function _fann_run($ann,$input) {
         $214 = $num_connections;
         $215 = ($213|0)!=($214|0);
         if (!($215)) {
-         break L14;
+         break L13;
         }
         $216 = $i;
         $217 = $weights;
@@ -9934,6 +9934,63 @@ function _fann_run($ann,$input) {
        break L11;
        break;
       }
+      case 5:  {
+       $320 = $neuron_sum;
+       $321 = -2.0 * $320;
+       $322 = (+Math_exp((+$321)));
+       $323 = 1.0 + $322;
+       $324 = 2.0 / $323;
+       $325 = $324 - 1.0;
+       $326 = $neuron_it;
+       $327 = ((($326)) + 16|0);
+       HEAPF64[tempDoublePtr>>3]=$325;HEAP8[$327>>0]=HEAP8[tempDoublePtr>>0];HEAP8[$327+1>>0]=HEAP8[tempDoublePtr+1>>0];HEAP8[$327+2>>0]=HEAP8[tempDoublePtr+2>>0];HEAP8[$327+3>>0]=HEAP8[tempDoublePtr+3>>0];HEAP8[$327+4>>0]=HEAP8[tempDoublePtr+4>>0];HEAP8[$327+5>>0]=HEAP8[tempDoublePtr+5>>0];HEAP8[$327+6>>0]=HEAP8[tempDoublePtr+6>>0];HEAP8[$327+7>>0]=HEAP8[tempDoublePtr+7>>0];
+       break L11;
+       break;
+      }
+      case 12:  {
+       $295 = $neuron_sum;
+       $296 = $295 < 0.0;
+       if ($296) {
+        $303 = 0.0;
+       } else {
+        $297 = $neuron_sum;
+        $298 = $297 > 1.0;
+        $299 = $neuron_sum;
+        $300 = $298 ? 1.0 : $299;
+        $303 = $300;
+       }
+       $301 = $neuron_it;
+       $302 = ((($301)) + 16|0);
+       HEAPF64[tempDoublePtr>>3]=$303;HEAP8[$302>>0]=HEAP8[tempDoublePtr>>0];HEAP8[$302+1>>0]=HEAP8[tempDoublePtr+1>>0];HEAP8[$302+2>>0]=HEAP8[tempDoublePtr+2>>0];HEAP8[$302+3>>0]=HEAP8[tempDoublePtr+3>>0];HEAP8[$302+4>>0]=HEAP8[tempDoublePtr+4>>0];HEAP8[$302+5>>0]=HEAP8[tempDoublePtr+5>>0];HEAP8[$302+6>>0]=HEAP8[tempDoublePtr+6>>0];HEAP8[$302+7>>0]=HEAP8[tempDoublePtr+7>>0];
+       break L11;
+       break;
+      }
+      case 0:  {
+       $292 = $neuron_sum;
+       $293 = $neuron_it;
+       $294 = ((($293)) + 16|0);
+       HEAPF64[tempDoublePtr>>3]=$292;HEAP8[$294>>0]=HEAP8[tempDoublePtr>>0];HEAP8[$294+1>>0]=HEAP8[tempDoublePtr+1>>0];HEAP8[$294+2>>0]=HEAP8[tempDoublePtr+2>>0];HEAP8[$294+3>>0]=HEAP8[tempDoublePtr+3>>0];HEAP8[$294+4>>0]=HEAP8[tempDoublePtr+4>>0];HEAP8[$294+5>>0]=HEAP8[tempDoublePtr+5>>0];HEAP8[$294+6>>0]=HEAP8[tempDoublePtr+6>>0];HEAP8[$294+7>>0]=HEAP8[tempDoublePtr+7>>0];
+       break L11;
+       break;
+      }
+      case 13:  {
+       $304 = $neuron_sum;
+       $305 = $304 < -1.0;
+       if ($305) {
+        $312 = -1.0;
+       } else {
+        $306 = $neuron_sum;
+        $307 = $306 > 1.0;
+        $308 = $neuron_sum;
+        $309 = $307 ? 1.0 : $308;
+        $312 = $309;
+       }
+       $310 = $neuron_it;
+       $311 = ((($310)) + 16|0);
+       HEAPF64[tempDoublePtr>>3]=$312;HEAP8[$311>>0]=HEAP8[tempDoublePtr>>0];HEAP8[$311+1>>0]=HEAP8[tempDoublePtr+1>>0];HEAP8[$311+2>>0]=HEAP8[tempDoublePtr+2>>0];HEAP8[$311+3>>0]=HEAP8[tempDoublePtr+3>>0];HEAP8[$311+4>>0]=HEAP8[tempDoublePtr+4>>0];HEAP8[$311+5>>0]=HEAP8[tempDoublePtr+5>>0];HEAP8[$311+6>>0]=HEAP8[tempDoublePtr+6>>0];HEAP8[$311+7>>0]=HEAP8[tempDoublePtr+7>>0];
+       break L11;
+       break;
+      }
       case 6:  {
        $328 = $neuron_sum;
        $329 = $328 < 1.4722193479537964;
@@ -9999,63 +10056,6 @@ function _fann_run($ann,$input) {
        $361 = $neuron_it;
        $362 = ((($361)) + 16|0);
        HEAPF64[tempDoublePtr>>3]=$363;HEAP8[$362>>0]=HEAP8[tempDoublePtr>>0];HEAP8[$362+1>>0]=HEAP8[tempDoublePtr+1>>0];HEAP8[$362+2>>0]=HEAP8[tempDoublePtr+2>>0];HEAP8[$362+3>>0]=HEAP8[tempDoublePtr+3>>0];HEAP8[$362+4>>0]=HEAP8[tempDoublePtr+4>>0];HEAP8[$362+5>>0]=HEAP8[tempDoublePtr+5>>0];HEAP8[$362+6>>0]=HEAP8[tempDoublePtr+6>>0];HEAP8[$362+7>>0]=HEAP8[tempDoublePtr+7>>0];
-       break L11;
-       break;
-      }
-      case 5:  {
-       $320 = $neuron_sum;
-       $321 = -2.0 * $320;
-       $322 = (+Math_exp((+$321)));
-       $323 = 1.0 + $322;
-       $324 = 2.0 / $323;
-       $325 = $324 - 1.0;
-       $326 = $neuron_it;
-       $327 = ((($326)) + 16|0);
-       HEAPF64[tempDoublePtr>>3]=$325;HEAP8[$327>>0]=HEAP8[tempDoublePtr>>0];HEAP8[$327+1>>0]=HEAP8[tempDoublePtr+1>>0];HEAP8[$327+2>>0]=HEAP8[tempDoublePtr+2>>0];HEAP8[$327+3>>0]=HEAP8[tempDoublePtr+3>>0];HEAP8[$327+4>>0]=HEAP8[tempDoublePtr+4>>0];HEAP8[$327+5>>0]=HEAP8[tempDoublePtr+5>>0];HEAP8[$327+6>>0]=HEAP8[tempDoublePtr+6>>0];HEAP8[$327+7>>0]=HEAP8[tempDoublePtr+7>>0];
-       break L11;
-       break;
-      }
-      case 12:  {
-       $295 = $neuron_sum;
-       $296 = $295 < 0.0;
-       if ($296) {
-        $303 = 0.0;
-       } else {
-        $297 = $neuron_sum;
-        $298 = $297 > 1.0;
-        $299 = $neuron_sum;
-        $300 = $298 ? 1.0 : $299;
-        $303 = $300;
-       }
-       $301 = $neuron_it;
-       $302 = ((($301)) + 16|0);
-       HEAPF64[tempDoublePtr>>3]=$303;HEAP8[$302>>0]=HEAP8[tempDoublePtr>>0];HEAP8[$302+1>>0]=HEAP8[tempDoublePtr+1>>0];HEAP8[$302+2>>0]=HEAP8[tempDoublePtr+2>>0];HEAP8[$302+3>>0]=HEAP8[tempDoublePtr+3>>0];HEAP8[$302+4>>0]=HEAP8[tempDoublePtr+4>>0];HEAP8[$302+5>>0]=HEAP8[tempDoublePtr+5>>0];HEAP8[$302+6>>0]=HEAP8[tempDoublePtr+6>>0];HEAP8[$302+7>>0]=HEAP8[tempDoublePtr+7>>0];
-       break L11;
-       break;
-      }
-      case 0:  {
-       $292 = $neuron_sum;
-       $293 = $neuron_it;
-       $294 = ((($293)) + 16|0);
-       HEAPF64[tempDoublePtr>>3]=$292;HEAP8[$294>>0]=HEAP8[tempDoublePtr>>0];HEAP8[$294+1>>0]=HEAP8[tempDoublePtr+1>>0];HEAP8[$294+2>>0]=HEAP8[tempDoublePtr+2>>0];HEAP8[$294+3>>0]=HEAP8[tempDoublePtr+3>>0];HEAP8[$294+4>>0]=HEAP8[tempDoublePtr+4>>0];HEAP8[$294+5>>0]=HEAP8[tempDoublePtr+5>>0];HEAP8[$294+6>>0]=HEAP8[tempDoublePtr+6>>0];HEAP8[$294+7>>0]=HEAP8[tempDoublePtr+7>>0];
-       break L11;
-       break;
-      }
-      case 13:  {
-       $304 = $neuron_sum;
-       $305 = $304 < -1.0;
-       if ($305) {
-        $312 = -1.0;
-       } else {
-        $306 = $neuron_sum;
-        $307 = $306 > 1.0;
-        $308 = $neuron_sum;
-        $309 = $307 ? 1.0 : $308;
-        $312 = $309;
-       }
-       $310 = $neuron_it;
-       $311 = ((($310)) + 16|0);
-       HEAPF64[tempDoublePtr>>3]=$312;HEAP8[$311>>0]=HEAP8[tempDoublePtr>>0];HEAP8[$311+1>>0]=HEAP8[tempDoublePtr+1>>0];HEAP8[$311+2>>0]=HEAP8[tempDoublePtr+2>>0];HEAP8[$311+3>>0]=HEAP8[tempDoublePtr+3>>0];HEAP8[$311+4>>0]=HEAP8[tempDoublePtr+4>>0];HEAP8[$311+5>>0]=HEAP8[tempDoublePtr+5>>0];HEAP8[$311+6>>0]=HEAP8[tempDoublePtr+6>>0];HEAP8[$311+7>>0]=HEAP8[tempDoublePtr+7>>0];
        break L11;
        break;
       }
@@ -12756,21 +12756,7 @@ function _fann_get_bias_array($ann,$bias) {
   $10 = $0;
   $11 = (_fann_get_network_type($10)|0);
   do {
-   if ((($11|0) == 1)) {
-    $19 = $layer_it;
-    $20 = $0;
-    $21 = ((($20)) + 28|0);
-    $22 = HEAP32[$21>>2]|0;
-    $23 = ($19|0)==($22|0);
-    $24 = $1;
-    if ($23) {
-     HEAP32[$24>>2] = 1;
-     break;
-    } else {
-     HEAP32[$24>>2] = 0;
-     break;
-    }
-   } else if ((($11|0) == 0)) {
+   if ((($11|0) == 0)) {
     $12 = $layer_it;
     $13 = $0;
     $14 = ((($13)) + 32|0);
@@ -12783,6 +12769,20 @@ function _fann_get_bias_array($ann,$bias) {
      break;
     } else {
      HEAP32[$18>>2] = 0;
+     break;
+    }
+   } else if ((($11|0) == 1)) {
+    $19 = $layer_it;
+    $20 = $0;
+    $21 = ((($20)) + 28|0);
+    $22 = HEAP32[$21>>2]|0;
+    $23 = ($19|0)==($22|0);
+    $24 = $1;
+    if ($23) {
+     HEAP32[$24>>2] = 1;
+     break;
+    } else {
+     HEAP32[$24>>2] = 0;
      break;
     }
    } else {
@@ -16465,31 +16465,6 @@ function _fann_activation_derived($activation_function,$steepness,$value,$sum) {
    STACKTOP = sp;return (+$126);
    break;
   }
-  case 16:  {
-   $111 = $2;
-   $112 = $2;
-   $113 = $4;
-   $114 = $112 * $113;
-   $115 = (+Math_cos((+$114)));
-   $116 = $111 * $115;
-   $117 = $116 / 2.0;
-   $0 = $117;
-   $126 = $0;
-   STACKTOP = sp;return (+$126);
-   break;
-  }
-  case 14:  {
-   $98 = $2;
-   $99 = $2;
-   $100 = $4;
-   $101 = $99 * $100;
-   $102 = (+Math_cos((+$101)));
-   $103 = $98 * $102;
-   $0 = $103;
-   $126 = $0;
-   STACKTOP = sp;return (+$126);
-   break;
-  }
   case 17:  {
    $118 = $2;
    $119 = $2;
@@ -16504,27 +16479,15 @@ function _fann_activation_derived($activation_function,$steepness,$value,$sum) {
    STACKTOP = sp;return (+$126);
    break;
   }
-  case 4: case 3:  {
-   $7 = $3;
-   $8 = $7 < 0.0099999997764825821;
-   if ($8) {
-    $13 = 0.0099999997764825821;
-   } else {
-    $9 = $3;
-    $10 = $9 > 0.99000000953674316;
-    $11 = $3;
-    $12 = $10 ? 0.99000000953674316 : $11;
-    $13 = $12;
-   }
-   $3 = $13;
-   $14 = $2;
-   $15 = 2.0 * $14;
-   $16 = $3;
-   $17 = $15 * $16;
-   $18 = $3;
-   $19 = 1.0 - $18;
-   $20 = $17 * $19;
-   $0 = $20;
+  case 16:  {
+   $111 = $2;
+   $112 = $2;
+   $113 = $4;
+   $114 = $112 * $113;
+   $115 = (+Math_cos((+$114)));
+   $116 = $111 * $115;
+   $117 = $116 / 2.0;
+   $0 = $117;
    $126 = $0;
    STACKTOP = sp;return (+$126);
    break;
@@ -16542,8 +16505,31 @@ function _fann_activation_derived($activation_function,$steepness,$value,$sum) {
    STACKTOP = sp;return (+$126);
    break;
   }
-  case 1:  {
-   _fann_error(0,12,$vararg_buffer);
+  case 8:  {
+   $42 = $4;
+   $43 = -2.0 * $42;
+   $44 = $3;
+   $45 = $44 + 1.0;
+   $46 = $43 * $45;
+   $47 = $2;
+   $48 = $46 * $47;
+   $49 = $2;
+   $50 = $48 * $49;
+   $0 = $50;
+   $126 = $0;
+   STACKTOP = sp;return (+$126);
+   break;
+  }
+  case 14:  {
+   $98 = $2;
+   $99 = $2;
+   $100 = $4;
+   $101 = $99 * $100;
+   $102 = (+Math_cos((+$101)));
+   $103 = $98 * $102;
+   $0 = $103;
+   $126 = $0;
+   STACKTOP = sp;return (+$126);
    break;
   }
   case 10:  {
@@ -16577,20 +16563,6 @@ function _fann_activation_derived($activation_function,$steepness,$value,$sum) {
    $73 = $66 * $72;
    $74 = $59 / $73;
    $0 = $74;
-   $126 = $0;
-   STACKTOP = sp;return (+$126);
-   break;
-  }
-  case 7:  {
-   $34 = $4;
-   $35 = -2.0 * $34;
-   $36 = $3;
-   $37 = $35 * $36;
-   $38 = $2;
-   $39 = $37 * $38;
-   $40 = $2;
-   $41 = $39 * $40;
-   $0 = $41;
    $126 = $0;
    STACKTOP = sp;return (+$126);
    break;
@@ -16629,17 +16601,45 @@ function _fann_activation_derived($activation_function,$steepness,$value,$sum) {
    STACKTOP = sp;return (+$126);
    break;
   }
-  case 8:  {
-   $42 = $4;
-   $43 = -2.0 * $42;
-   $44 = $3;
-   $45 = $44 + 1.0;
-   $46 = $43 * $45;
-   $47 = $2;
-   $48 = $46 * $47;
-   $49 = $2;
-   $50 = $48 * $49;
-   $0 = $50;
+  case 7:  {
+   $34 = $4;
+   $35 = -2.0 * $34;
+   $36 = $3;
+   $37 = $35 * $36;
+   $38 = $2;
+   $39 = $37 * $38;
+   $40 = $2;
+   $41 = $39 * $40;
+   $0 = $41;
+   $126 = $0;
+   STACKTOP = sp;return (+$126);
+   break;
+  }
+  case 1:  {
+   _fann_error(0,12,$vararg_buffer);
+   break;
+  }
+  case 4: case 3:  {
+   $7 = $3;
+   $8 = $7 < 0.0099999997764825821;
+   if ($8) {
+    $13 = 0.0099999997764825821;
+   } else {
+    $9 = $3;
+    $10 = $9 > 0.99000000953674316;
+    $11 = $3;
+    $12 = $10 ? 0.99000000953674316 : $11;
+    $13 = $12;
+   }
+   $3 = $13;
+   $14 = $2;
+   $15 = 2.0 * $14;
+   $16 = $3;
+   $17 = $15 * $16;
+   $18 = $3;
+   $19 = 1.0 - $18;
+   $20 = $17 * $19;
+   $0 = $20;
    $126 = $0;
    STACKTOP = sp;return (+$126);
    break;
@@ -16678,12 +16678,81 @@ function _fann_activation($ann,$activation_function,$steepness,$value) {
  $7 = $1;
  do {
   switch ($7|0) {
-  case 1:  {
-   $102 = $3;
-   $103 = $102 < 0.0;
-   $104 = $103 ? 0 : 1;
-   $105 = (+($104|0));
-   $3 = $105;
+  case 3:  {
+   $23 = $3;
+   $24 = -2.0 * $23;
+   $25 = (+Math_exp((+$24)));
+   $26 = 1.0 + $25;
+   $27 = 1.0 / $26;
+   $3 = $27;
+   break;
+  }
+  case 16:  {
+   $144 = $3;
+   $145 = (+Math_sin((+$144)));
+   $146 = $145 / 2.0;
+   $147 = $146 + 0.5;
+   $3 = $147;
+   break;
+  }
+  case 15:  {
+   $142 = $3;
+   $143 = (+Math_cos((+$142)));
+   $3 = $143;
+   break;
+  }
+  case 0:  {
+   $8 = $3;
+   $3 = $8;
+   break;
+  }
+  case 8:  {
+   $115 = $3;
+   $116 = -$115;
+   $117 = $3;
+   $118 = $116 * $117;
+   $119 = (+Math_exp((+$118)));
+   $120 = $119 * 2.0;
+   $121 = $120 - 1.0;
+   $3 = $121;
+   break;
+  }
+  case 14:  {
+   $140 = $3;
+   $141 = (+Math_sin((+$140)));
+   $3 = $141;
+   break;
+  }
+  case 11:  {
+   $132 = $3;
+   $133 = $3;
+   $134 = $133 > 0.0;
+   $135 = $3;
+   $136 = -$135;
+   $137 = $134 ? $135 : $136;
+   $138 = 1.0 + $137;
+   $139 = $132 / $138;
+   $3 = $139;
+   break;
+  }
+  case 17:  {
+   $148 = $3;
+   $149 = (+Math_cos((+$148)));
+   $150 = $149 / 2.0;
+   $151 = $150 + 0.5;
+   $3 = $151;
+   break;
+  }
+  case 2:  {
+   $106 = $3;
+   $107 = $106 < 0.0;
+   $108 = $107 ? -1 : 1;
+   $109 = (+($108|0));
+   $3 = $109;
+   break;
+  }
+  case 9:  {
+   $3 = 0.0;
    break;
   }
   case 10:  {
@@ -16700,41 +16769,19 @@ function _fann_activation($ann,$activation_function,$steepness,$value) {
    $3 = $131;
    break;
   }
-  case 15:  {
-   $142 = $3;
-   $143 = (+Math_cos((+$142)));
-   $3 = $143;
-   break;
-  }
-  case 11:  {
-   $132 = $3;
-   $133 = $3;
-   $134 = $133 > 0.0;
-   $135 = $3;
-   $136 = -$135;
-   $137 = $134 ? $135 : $136;
-   $138 = 1.0 + $137;
-   $139 = $132 / $138;
-   $3 = $139;
-   break;
-  }
-  case 0:  {
-   $8 = $3;
-   $3 = $8;
-   break;
-  }
-  case 14:  {
-   $140 = $3;
-   $141 = (+Math_sin((+$140)));
-   $3 = $141;
-   break;
-  }
-  case 16:  {
-   $144 = $3;
-   $145 = (+Math_sin((+$144)));
-   $146 = $145 / 2.0;
-   $147 = $146 + 0.5;
-   $3 = $147;
+  case 13:  {
+   $16 = $3;
+   $17 = $16 < -1.0;
+   if ($17) {
+    $22 = -1.0;
+   } else {
+    $18 = $3;
+    $19 = $18 > 1.0;
+    $20 = $3;
+    $21 = $19 ? 1.0 : $20;
+    $22 = $21;
+   }
+   $3 = $22;
    break;
   }
   case 4:  {
@@ -16802,24 +16849,21 @@ function _fann_activation($ann,$activation_function,$steepness,$value) {
    $3 = $101;
    break;
   }
-  case 2:  {
-   $106 = $3;
-   $107 = $106 < 0.0;
-   $108 = $107 ? -1 : 1;
-   $109 = (+($108|0));
-   $3 = $109;
+  case 7:  {
+   $110 = $3;
+   $111 = -$110;
+   $112 = $3;
+   $113 = $111 * $112;
+   $114 = (+Math_exp((+$113)));
+   $3 = $114;
    break;
   }
-  case 9:  {
-   $3 = 0.0;
-   break;
-  }
-  case 17:  {
-   $148 = $3;
-   $149 = (+Math_cos((+$148)));
-   $150 = $149 / 2.0;
-   $151 = $150 + 0.5;
-   $3 = $151;
+  case 1:  {
+   $102 = $3;
+   $103 = $102 < 0.0;
+   $104 = $103 ? 0 : 1;
+   $105 = (+($104|0));
+   $3 = $105;
    break;
   }
   case 12:  {
@@ -16837,19 +16881,14 @@ function _fann_activation($ann,$activation_function,$steepness,$value) {
    $3 = $15;
    break;
   }
-  case 13:  {
-   $16 = $3;
-   $17 = $16 < -1.0;
-   if ($17) {
-    $22 = -1.0;
-   } else {
-    $18 = $3;
-    $19 = $18 > 1.0;
-    $20 = $3;
-    $21 = $19 ? 1.0 : $20;
-    $22 = $21;
-   }
-   $3 = $22;
+  case 5:  {
+   $28 = $3;
+   $29 = -2.0 * $28;
+   $30 = (+Math_exp((+$29)));
+   $31 = 1.0 + $30;
+   $32 = 2.0 / $31;
+   $33 = $32 - 1.0;
+   $3 = $33;
    break;
   }
   case 6:  {
@@ -16915,45 +16954,6 @@ function _fann_activation($ann,$activation_function,$steepness,$value) {
     }
    } while(0);
    $3 = $67;
-   break;
-  }
-  case 3:  {
-   $23 = $3;
-   $24 = -2.0 * $23;
-   $25 = (+Math_exp((+$24)));
-   $26 = 1.0 + $25;
-   $27 = 1.0 / $26;
-   $3 = $27;
-   break;
-  }
-  case 5:  {
-   $28 = $3;
-   $29 = -2.0 * $28;
-   $30 = (+Math_exp((+$29)));
-   $31 = 1.0 + $30;
-   $32 = 2.0 / $31;
-   $33 = $32 - 1.0;
-   $3 = $33;
-   break;
-  }
-  case 8:  {
-   $115 = $3;
-   $116 = -$115;
-   $117 = $3;
-   $118 = $116 * $117;
-   $119 = (+Math_exp((+$118)));
-   $120 = $119 * 2.0;
-   $121 = $120 - 1.0;
-   $3 = $121;
-   break;
-  }
-  case 7:  {
-   $110 = $3;
-   $111 = -$110;
-   $112 = $3;
-   $113 = $111 * $112;
-   $114 = (+Math_exp((+$113)));
-   $3 = $114;
    break;
   }
   default: {
@@ -20448,6 +20448,14 @@ function _fann_train_epoch($ann,$data) {
    $8 = ((($7)) + 60|0);
    $9 = HEAP32[$8>>2]|0;
    switch ($9|0) {
+   case 2:  {
+    $13 = $1;
+    $14 = $2;
+    $15 = (+_fann_train_epoch_irpropm($13,$14));
+    $0 = $15;
+    break L1;
+    break;
+   }
    case 0:  {
     $22 = $1;
     $23 = $2;
@@ -20456,11 +20464,11 @@ function _fann_train_epoch($ann,$data) {
     break L1;
     break;
    }
-   case 1:  {
-    $19 = $1;
-    $20 = $2;
-    $21 = (+_fann_train_epoch_batch($19,$20));
-    $0 = $21;
+   case 4:  {
+    $16 = $1;
+    $17 = $2;
+    $18 = (+_fann_train_epoch_sarprop($16,$17));
+    $0 = $18;
     break L1;
     break;
    }
@@ -20472,19 +20480,11 @@ function _fann_train_epoch($ann,$data) {
     break L1;
     break;
    }
-   case 2:  {
-    $13 = $1;
-    $14 = $2;
-    $15 = (+_fann_train_epoch_irpropm($13,$14));
-    $0 = $15;
-    break L1;
-    break;
-   }
-   case 4:  {
-    $16 = $1;
-    $17 = $2;
-    $18 = (+_fann_train_epoch_sarprop($16,$17));
-    $0 = $18;
+   case 1:  {
+    $19 = $1;
+    $20 = $2;
+    $21 = (+_fann_train_epoch_batch($19,$20));
+    $0 = $21;
     break L1;
     break;
    }
@@ -20647,7 +20647,17 @@ function _fann_desired_error_reached($ann,$desired_error) {
  $3 = $1;
  $4 = ((($3)) + 100|0);
  $5 = HEAP32[$4>>2]|0;
- if ((($5|0) == 1)) {
+ if ((($5|0) == 0)) {
+  $6 = $1;
+  $7 = (+_fann_get_MSE($6));
+  $8 = $2;
+  $9 = $7 <= $8;
+  if ($9) {
+   $0 = 0;
+  } else {
+   label = 6;
+  }
+ } else if ((($5|0) == 1)) {
   $10 = $1;
   $11 = ((($10)) + 80|0);
   $12 = HEAP32[$11>>2]|0;
@@ -20655,16 +20665,6 @@ function _fann_desired_error_reached($ann,$desired_error) {
   $14 = (~~(($13))>>>0);
   $15 = ($12>>>0)<=($14>>>0);
   if ($15) {
-   $0 = 0;
-  } else {
-   label = 6;
-  }
- } else if ((($5|0) == 0)) {
-  $6 = $1;
-  $7 = (+_fann_get_MSE($6));
-  $8 = $2;
-  $9 = $7 <= $8;
-  if ($9) {
    $0 = 0;
   } else {
    label = 6;
@@ -25219,31 +25219,6 @@ function _fann_train_outputs_epoch($ann,$data) {
   STACKTOP = sp;return (+$77);
   break;
  }
- case 2:  {
-  $35 = $0;
-  $36 = $0;
-  $37 = ((($36)) + 32|0);
-  $38 = HEAP32[$37>>2]|0;
-  $39 = ((($38)) + -8|0);
-  $40 = HEAP32[$39>>2]|0;
-  $41 = HEAPU8[$40>>0]|(HEAPU8[$40+1>>0]<<8)|(HEAPU8[$40+2>>0]<<16)|(HEAPU8[$40+3>>0]<<24);
-  $42 = $0;
-  $43 = ((($42)) + 64|0);
-  $44 = HEAP32[$43>>2]|0;
-  _fann_update_weights_irpropm($35,$41,$44);
-  $76 = $0;
-  $77 = (+_fann_get_MSE($76));
-  STACKTOP = sp;return (+$77);
-  break;
- }
- case 0: case 1:  {
-  $75 = $0;
-  _fann_error($75,15,$vararg_buffer);
-  $76 = $0;
-  $77 = (+_fann_get_MSE($76));
-  STACKTOP = sp;return (+$77);
-  break;
- }
  case 4:  {
   $45 = $0;
   $46 = $0;
@@ -25264,6 +25239,31 @@ function _fann_train_outputs_epoch($ann,$data) {
   $60 = HEAP32[$59>>2]|0;
   $61 = (($60) + 1)|0;
   HEAP32[$59>>2] = $61;
+  $76 = $0;
+  $77 = (+_fann_get_MSE($76));
+  STACKTOP = sp;return (+$77);
+  break;
+ }
+ case 2:  {
+  $35 = $0;
+  $36 = $0;
+  $37 = ((($36)) + 32|0);
+  $38 = HEAP32[$37>>2]|0;
+  $39 = ((($38)) + -8|0);
+  $40 = HEAP32[$39>>2]|0;
+  $41 = HEAPU8[$40>>0]|(HEAPU8[$40+1>>0]<<8)|(HEAPU8[$40+2>>0]<<16)|(HEAPU8[$40+3>>0]<<24);
+  $42 = $0;
+  $43 = ((($42)) + 64|0);
+  $44 = HEAP32[$43>>2]|0;
+  _fann_update_weights_irpropm($35,$41,$44);
+  $76 = $0;
+  $77 = (+_fann_get_MSE($76));
+  STACKTOP = sp;return (+$77);
+  break;
+ }
+ case 0: case 1:  {
+  $75 = $0;
+  _fann_error($75,15,$vararg_buffer);
   $76 = $0;
   $77 = (+_fann_get_MSE($76));
   STACKTOP = sp;return (+$77);
@@ -25911,9 +25911,7 @@ function _fann_update_candidate_slopes($ann) {
   $57 = $56 & 3;
   $i = $57;
   $58 = $i;
-  if ((($58|0) == 2)) {
-   label = 5;
-  } else if ((($58|0) == 3)) {
+  if ((($58|0) == 3)) {
    $59 = $weights;
    $60 = ((($59)) + 16|0);
    $61 = +HEAPF64[$60>>3];
@@ -25928,6 +25926,8 @@ function _fann_update_candidate_slopes($ann) {
    label = 5;
   } else if ((($58|0) == 1)) {
    label = 6;
+  } else if ((($58|0) == 2)) {
+   label = 5;
   }
   if ((label|0) == 5) {
    label = 0;
@@ -26214,12 +26214,6 @@ function _fann_update_candidate_weights($ann,$num_data) {
  $15 = ((($14)) + 60|0);
  $16 = HEAP32[$15>>2]|0;
  switch ($16|0) {
- case 0: case 1:  {
-  $51 = $0;
-  _fann_error($51,15,$vararg_buffer);
-  STACKTOP = sp;return;
-  break;
- }
  case 3:  {
   $40 = $0;
   $41 = $1;
@@ -26248,6 +26242,12 @@ function _fann_update_candidate_weights($ann,$num_data) {
   $25 = HEAP32[$24>>2]|0;
   $26 = (($22) + ($25))|0;
   _fann_update_weights_irpropm($17,$19,$26);
+  STACKTOP = sp;return;
+  break;
+ }
+ case 0: case 1:  {
+  $51 = $0;
+  _fann_error($51,15,$vararg_buffer);
   STACKTOP = sp;return;
   break;
  }
@@ -27073,74 +27073,134 @@ function _fann_set_cascade_activation_steepnesses($ann,$cascade_activation_steep
  _memmove(($28|0),($29|0),($33|0))|0;
  STACKTOP = sp;return;
 }
-function _fann_create_shortcut3($num_input,$num_hidden,$num_output) {
- $num_input = $num_input|0;
- $num_hidden = $num_hidden|0;
- $num_output = $num_output|0;
- var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $layers = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $layers = sp;
- $0 = $num_input;
- $1 = $num_hidden;
- $2 = $num_output;
- $3 = $0;
- HEAP32[$layers>>2] = $3;
- $4 = $1;
- $5 = ((($layers)) + 4|0);
- HEAP32[$5>>2] = $4;
- $6 = $2;
- $7 = ((($layers)) + 8|0);
- HEAP32[$7>>2] = $6;
- $8 = (_fann_create_shortcut_array(3,$layers)|0);
- STACKTOP = sp;return ($8|0);
-}
-function _fann_create_sparse3($connection_rate,$num_input,$num_hidden,$num_output) {
+function _fann_create_array_8($num_layers,$layer0,$layer1,$layer2,$layer3,$layer4,$layer5,$layer6,$layer7,$type,$connection_rate) {
+ $num_layers = $num_layers|0;
+ $layer0 = $layer0|0;
+ $layer1 = $layer1|0;
+ $layer2 = $layer2|0;
+ $layer3 = $layer3|0;
+ $layer4 = $layer4|0;
+ $layer5 = $layer5|0;
+ $layer6 = $layer6|0;
+ $layer7 = $layer7|0;
+ $type = $type|0;
  $connection_rate = +$connection_rate;
- $num_input = $num_input|0;
- $num_hidden = $num_hidden|0;
- $num_output = $num_output|0;
- var $0 = 0.0, $1 = 0, $10 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0.0, $layers = 0, label = 0, sp = 0;
+ var $0 = 0, $1 = 0, $10 = 0, $11 = 0.0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0;
+ var $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $42 = 0, $43 = 0, $44 = 0;
+ var $45 = 0, $46 = 0, $47 = 0, $48 = 0.0, $49 = 0, $5 = 0, $50 = 0, $51 = 0, $52 = 0, $53 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $error = 0, $layers = 0, $vararg_buffer = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $layers = sp;
- $0 = $connection_rate;
- $1 = $num_input;
- $2 = $num_hidden;
- $3 = $num_output;
- $4 = $1;
- HEAP32[$layers>>2] = $4;
- $5 = $2;
- $6 = ((($layers)) + 4|0);
- HEAP32[$6>>2] = $5;
- $7 = $3;
- $8 = ((($layers)) + 8|0);
- HEAP32[$8>>2] = $7;
- $9 = $0;
- $10 = (_fann_create_sparse_array($9,3,$layers)|0);
- STACKTOP = sp;return ($10|0);
-}
-function _fann_create_standard3($num_input,$num_hidden,$num_output) {
- $num_input = $num_input|0;
- $num_hidden = $num_hidden|0;
- $num_output = $num_output|0;
- var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $layers = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $layers = sp;
- $0 = $num_input;
- $1 = $num_hidden;
- $2 = $num_output;
- $3 = $0;
- HEAP32[$layers>>2] = $3;
- $4 = $1;
- $5 = ((($layers)) + 4|0);
- HEAP32[$5>>2] = $4;
- $6 = $2;
- $7 = ((($layers)) + 8|0);
- HEAP32[$7>>2] = $6;
- $8 = (_fann_create_standard_array(3,$layers)|0);
- STACKTOP = sp;return ($8|0);
+ STACKTOP = STACKTOP + 96|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $vararg_buffer = sp;
+ $layers = sp + 8|0;
+ $1 = $num_layers;
+ $2 = $layer0;
+ $3 = $layer1;
+ $4 = $layer2;
+ $5 = $layer3;
+ $6 = $layer4;
+ $7 = $layer5;
+ $8 = $layer6;
+ $9 = $layer7;
+ $10 = $type;
+ $11 = $connection_rate;
+ $error = 0;
+ $12 = $2;
+ HEAP32[$layers>>2] = $12;
+ $13 = $2;
+ $14 = ($13>>>0)>(1000000);
+ if ($14) {
+  $error = 1;
+ }
+ $15 = $3;
+ $16 = ((($layers)) + 4|0);
+ HEAP32[$16>>2] = $15;
+ $17 = $3;
+ $18 = ($17>>>0)>(1000000);
+ if ($18) {
+  $error = 1;
+ }
+ $19 = $4;
+ $20 = ((($layers)) + 8|0);
+ HEAP32[$20>>2] = $19;
+ $21 = $4;
+ $22 = ($21>>>0)>(1000000);
+ if ($22) {
+  $error = 1;
+ }
+ $23 = $5;
+ $24 = ((($layers)) + 12|0);
+ HEAP32[$24>>2] = $23;
+ $25 = $5;
+ $26 = ($25>>>0)>(1000000);
+ if ($26) {
+  $error = 1;
+ }
+ $27 = $6;
+ $28 = ((($layers)) + 16|0);
+ HEAP32[$28>>2] = $27;
+ $29 = $6;
+ $30 = ($29>>>0)>(1000000);
+ if ($30) {
+  $error = 1;
+ }
+ $31 = $7;
+ $32 = ((($layers)) + 20|0);
+ HEAP32[$32>>2] = $31;
+ $33 = $7;
+ $34 = ($33>>>0)>(1000000);
+ if ($34) {
+  $error = 1;
+ }
+ $35 = $8;
+ $36 = ((($layers)) + 24|0);
+ HEAP32[$36>>2] = $35;
+ $37 = $8;
+ $38 = ($37>>>0)>(1000000);
+ if ($38) {
+  $error = 1;
+ }
+ $39 = $9;
+ $40 = ((($layers)) + 28|0);
+ HEAP32[$40>>2] = $39;
+ $41 = $9;
+ $42 = ($41>>>0)>(1000000);
+ if ($42) {
+  $error = 1;
+ }
+ $43 = $error;
+ $44 = ($43|0)!=(0);
+ if ($44) {
+  _fann_error(0,11,$vararg_buffer);
+  $0 = 0;
+  $53 = $0;
+  STACKTOP = sp;return ($53|0);
+ }
+ $45 = $10;
+ if ((($45|0) == 1)) {
+  $48 = $11;
+  $49 = $1;
+  $50 = (_fann_create_sparse_array($48,$49,$layers)|0);
+  $0 = $50;
+  $53 = $0;
+  STACKTOP = sp;return ($53|0);
+ } else if ((($45|0) == 2)) {
+  $51 = $1;
+  $52 = (_fann_create_shortcut_array($51,$layers)|0);
+  $0 = $52;
+  $53 = $0;
+  STACKTOP = sp;return ($53|0);
+ } else if ((($45|0) == 0)) {
+  $46 = $1;
+  $47 = (_fann_create_standard_array($46,$layers)|0);
+  $0 = $47;
+  $53 = $0;
+  STACKTOP = sp;return ($53|0);
+ } else {
+  $0 = 0;
+  $53 = $0;
+  STACKTOP = sp;return ($53|0);
+ }
+ return (0)|0;
 }
 function _malloc($bytes) {
  $bytes = $bytes|0;
@@ -28198,7 +28258,7 @@ function _malloc($bytes) {
          $477 = HEAP32[$476>>2]|0;
          $478 = $477 & -8;
          $479 = ($478|0)==($rsize$3$lcssa$i|0);
-         L216: do {
+         L217: do {
           if ($479) {
            $T$0$lcssa$i = $475;
           } else {
@@ -28224,7 +28284,7 @@ function _malloc($bytes) {
             $490 = ($489|0)==($rsize$3$lcssa$i|0);
             if ($490) {
              $T$0$lcssa$i = $487;
-             break L216;
+             break L217;
             } else {
              $K12$029$i = $485;$T$028$i = $487;
             }
@@ -30491,10 +30551,7 @@ function _frexp($x,$e) {
  $2 = (_bitshift64Lshr(($0|0),($1|0),52)|0);
  $3 = tempRet0;
  $4 = $2 & 2047;
- if ((($4|0) == 2047)) {
-  $$0 = $x;
-  return (+$$0);
- } else if ((($4|0) == 0)) {
+ if ((($4|0) == 0)) {
   $5 = $x != 0.0;
   if ($5) {
    $6 = $x * 1.8446744073709552E+19;
@@ -30507,6 +30564,9 @@ function _frexp($x,$e) {
   }
   HEAP32[$e>>2] = $storemerge;
   $$0 = $$01;
+  return (+$$0);
+ } else if ((($4|0) == 2047)) {
+  $$0 = $x;
   return (+$$0);
  } else {
   $10 = (($4) + -1022)|0;
@@ -32462,12 +32522,12 @@ function _printf_core($f,$fmt,$ap,$nl_arg,$nl_type) {
    $1171 = $22;$26 = $23;
   }
   while(1) {
-   if ((($1171<<24>>24) == 37)) {
+   if ((($1171<<24>>24) == 0)) {
+    $$lcssa106 = $26;$z$0$lcssa = $26;
+    break;
+   } else if ((($1171<<24>>24) == 37)) {
     $28 = $26;$z$0163 = $26;
     label = 9;
-    break;
-   } else if ((($1171<<24>>24) == 0)) {
-    $$lcssa106 = $26;$z$0$lcssa = $26;
     break;
    }
    $25 = ((($26)) + 1|0);
@@ -32822,24 +32882,76 @@ function _printf_core($f,$fmt,$ap,$nl_arg,$nl_type) {
     } else {
      do {
       switch ($$lcssa459|0) {
-      case 9:  {
-       $arglist_current5 = HEAP32[$ap>>2]|0;
-       $163 = $arglist_current5;
-       $164 = ((0) + 4|0);
-       $expanded78 = $164;
-       $expanded77 = (($expanded78) - 1)|0;
-       $165 = (($163) + ($expanded77))|0;
-       $166 = ((0) + 4|0);
-       $expanded82 = $166;
-       $expanded81 = (($expanded82) - 1)|0;
-       $expanded80 = $expanded81 ^ -1;
-       $167 = $165 & $expanded80;
-       $168 = $167;
-       $169 = HEAP32[$168>>2]|0;
-       $arglist_next6 = ((($168)) + 4|0);
-       HEAP32[$ap>>2] = $arglist_next6;
-       $170 = $169;
-       $264 = $170;$291 = $1169;
+      case 13:  {
+       $arglist_current17 = HEAP32[$ap>>2]|0;
+       $199 = $arglist_current17;
+       $200 = ((0) + 4|0);
+       $expanded106 = $200;
+       $expanded105 = (($expanded106) - 1)|0;
+       $201 = (($199) + ($expanded105))|0;
+       $202 = ((0) + 4|0);
+       $expanded110 = $202;
+       $expanded109 = (($expanded110) - 1)|0;
+       $expanded108 = $expanded109 ^ -1;
+       $203 = $201 & $expanded108;
+       $204 = $203;
+       $205 = HEAP32[$204>>2]|0;
+       $arglist_next18 = ((($204)) + 4|0);
+       HEAP32[$ap>>2] = $arglist_next18;
+       $206 = $205&65535;
+       $207 = $206 << 16 >> 16;
+       $208 = ($207|0)<(0);
+       $209 = $208 << 31 >> 31;
+       $sext93 = $205 << 16;
+       $210 = $sext93 >> 16;
+       $264 = $210;$291 = $209;
+       break L64;
+       break;
+      }
+      case 12:  {
+       $arglist_current14 = HEAP32[$ap>>2]|0;
+       $187 = $arglist_current14;
+       $188 = ((0) + 8|0);
+       $expanded99 = $188;
+       $expanded98 = (($expanded99) - 1)|0;
+       $189 = (($187) + ($expanded98))|0;
+       $190 = ((0) + 8|0);
+       $expanded103 = $190;
+       $expanded102 = (($expanded103) - 1)|0;
+       $expanded101 = $expanded102 ^ -1;
+       $191 = $189 & $expanded101;
+       $192 = $191;
+       $193 = $192;
+       $194 = $193;
+       $195 = HEAP32[$194>>2]|0;
+       $196 = (($193) + 4)|0;
+       $197 = $196;
+       $198 = HEAP32[$197>>2]|0;
+       $arglist_next15 = ((($192)) + 8|0);
+       HEAP32[$ap>>2] = $arglist_next15;
+       $264 = $195;$291 = $198;
+       break L64;
+       break;
+      }
+      case 10:  {
+       $arglist_current8 = HEAP32[$ap>>2]|0;
+       $171 = $arglist_current8;
+       $172 = ((0) + 4|0);
+       $expanded85 = $172;
+       $expanded84 = (($expanded85) - 1)|0;
+       $173 = (($171) + ($expanded84))|0;
+       $174 = ((0) + 4|0);
+       $expanded89 = $174;
+       $expanded88 = (($expanded89) - 1)|0;
+       $expanded87 = $expanded88 ^ -1;
+       $175 = $173 & $expanded87;
+       $176 = $175;
+       $177 = HEAP32[$176>>2]|0;
+       $arglist_next9 = ((($176)) + 4|0);
+       HEAP32[$ap>>2] = $arglist_next9;
+       $178 = ($177|0)<(0);
+       $179 = $178 << 31 >> 31;
+       $264 = $177;$291 = $179;
        break L64;
        break;
       }
@@ -32869,54 +32981,24 @@ function _printf_core($f,$fmt,$ap,$nl_arg,$nl_type) {
        break L64;
        break;
       }
-      case 12:  {
-       $arglist_current14 = HEAP32[$ap>>2]|0;
-       $187 = $arglist_current14;
-       $188 = ((0) + 8|0);
-       $expanded99 = $188;
-       $expanded98 = (($expanded99) - 1)|0;
-       $189 = (($187) + ($expanded98))|0;
-       $190 = ((0) + 8|0);
-       $expanded103 = $190;
-       $expanded102 = (($expanded103) - 1)|0;
-       $expanded101 = $expanded102 ^ -1;
-       $191 = $189 & $expanded101;
-       $192 = $191;
-       $193 = $192;
-       $194 = $193;
-       $195 = HEAP32[$194>>2]|0;
-       $196 = (($193) + 4)|0;
-       $197 = $196;
-       $198 = HEAP32[$197>>2]|0;
-       $arglist_next15 = ((($192)) + 8|0);
-       HEAP32[$ap>>2] = $arglist_next15;
-       $264 = $195;$291 = $198;
-       break L64;
-       break;
-      }
-      case 13:  {
-       $arglist_current17 = HEAP32[$ap>>2]|0;
-       $199 = $arglist_current17;
-       $200 = ((0) + 4|0);
-       $expanded106 = $200;
-       $expanded105 = (($expanded106) - 1)|0;
-       $201 = (($199) + ($expanded105))|0;
-       $202 = ((0) + 4|0);
-       $expanded110 = $202;
-       $expanded109 = (($expanded110) - 1)|0;
-       $expanded108 = $expanded109 ^ -1;
-       $203 = $201 & $expanded108;
-       $204 = $203;
-       $205 = HEAP32[$204>>2]|0;
-       $arglist_next18 = ((($204)) + 4|0);
-       HEAP32[$ap>>2] = $arglist_next18;
-       $206 = $205&65535;
-       $207 = $206 << 16 >> 16;
-       $208 = ($207|0)<(0);
-       $209 = $208 << 31 >> 31;
-       $sext93 = $205 << 16;
-       $210 = $sext93 >> 16;
-       $264 = $210;$291 = $209;
+      case 9:  {
+       $arglist_current5 = HEAP32[$ap>>2]|0;
+       $163 = $arglist_current5;
+       $164 = ((0) + 4|0);
+       $expanded78 = $164;
+       $expanded77 = (($expanded78) - 1)|0;
+       $165 = (($163) + ($expanded77))|0;
+       $166 = ((0) + 4|0);
+       $expanded82 = $166;
+       $expanded81 = (($expanded82) - 1)|0;
+       $expanded80 = $expanded81 ^ -1;
+       $167 = $165 & $expanded80;
+       $168 = $167;
+       $169 = HEAP32[$168>>2]|0;
+       $arglist_next6 = ((($168)) + 4|0);
+       HEAP32[$ap>>2] = $arglist_next6;
+       $170 = $169;
+       $264 = $170;$291 = $1169;
        break L64;
        break;
       }
@@ -32958,28 +33040,6 @@ function _printf_core($f,$fmt,$ap,$nl_arg,$nl_type) {
        $arglist_next12 = ((($185)) + 4|0);
        HEAP32[$ap>>2] = $arglist_next12;
        $264 = $186;$291 = 0;
-       break L64;
-       break;
-      }
-      case 10:  {
-       $arglist_current8 = HEAP32[$ap>>2]|0;
-       $171 = $arglist_current8;
-       $172 = ((0) + 4|0);
-       $expanded85 = $172;
-       $expanded84 = (($expanded85) - 1)|0;
-       $173 = (($171) + ($expanded84))|0;
-       $174 = ((0) + 4|0);
-       $expanded89 = $174;
-       $expanded88 = (($expanded89) - 1)|0;
-       $expanded87 = $expanded88 ^ -1;
-       $175 = $173 & $expanded87;
-       $176 = $175;
-       $177 = HEAP32[$176>>2]|0;
-       $arglist_next9 = ((($176)) + 4|0);
-       HEAP32[$ap>>2] = $arglist_next9;
-       $178 = ($177|0)<(0);
-       $179 = $178 << 31 >> 31;
-       $264 = $177;$291 = $179;
        break L64;
        break;
       }
@@ -33080,17 +33140,50 @@ function _printf_core($f,$fmt,$ap,$nl_arg,$nl_type) {
   $fl$1$ = $262 ? $fl$1 : $263;
   L86: do {
    switch ($t$0|0) {
+   case 112:  {
+    $286 = ($p$0>>>0)>(8);
+    $287 = $286 ? $p$0 : 8;
+    $288 = $fl$1$ | 8;
+    $fl$3 = $288;$p$1 = $287;$t$1 = 120;
+    label = 73;
+    break;
+   }
+   case 105: case 100:  {
+    $329 = ($291|0)<(0);
+    if ($329) {
+     $330 = (_i64Subtract(0,0,($264|0),($291|0))|0);
+     $331 = tempRet0;
+     $336 = $331;$338 = $330;$pl$0 = 1;$prefix$0 = 8064;
+     label = 84;
+     break L86;
+    }
+    $332 = $fl$1$ & 2048;
+    $333 = ($332|0)==(0);
+    if ($333) {
+     $334 = $fl$1$ & 1;
+     $335 = ($334|0)==(0);
+     $$ = $335 ? 8064 : (8066);
+     $336 = $291;$338 = $264;$pl$0 = $334;$prefix$0 = $$;
+     label = 84;
+    } else {
+     $336 = $291;$338 = $264;$pl$0 = 1;$prefix$0 = (8065);
+     label = 84;
+    }
+    break;
+   }
    case 99:  {
     $378 = $264&255;
     HEAP8[$4>>0] = $378;
     $1175 = $291;$1176 = $264;$a$2 = $4;$fl$6 = $263;$p$5 = 1;$pl$2 = 0;$prefix$2 = 8064;$z$2 = $2;
     break;
    }
-   case 112:  {
-    $286 = ($p$0>>>0)>(8);
-    $287 = $286 ? $p$0 : 8;
-    $288 = $fl$1$ | 8;
-    $fl$3 = $288;$p$1 = $287;$t$1 = 120;
+   case 117:  {
+    $336 = $291;$338 = $264;$pl$0 = 0;$prefix$0 = 8064;
+    label = 84;
+    break;
+   }
+   case 88: case 120:  {
+    $fl$3 = $fl$1$;$p$1 = $p$0;$t$1 = $t$0;
     label = 73;
     break;
    }
@@ -33131,108 +33224,6 @@ function _printf_core($f,$fmt,$ap,$nl_arg,$nl_type) {
     label = 89;
     break;
    }
-   case 88: case 120:  {
-    $fl$3 = $fl$1$;$p$1 = $p$0;$t$1 = $t$0;
-    label = 73;
-    break;
-   }
-   case 105: case 100:  {
-    $329 = ($291|0)<(0);
-    if ($329) {
-     $330 = (_i64Subtract(0,0,($264|0),($291|0))|0);
-     $331 = tempRet0;
-     $336 = $331;$338 = $330;$pl$0 = 1;$prefix$0 = 8064;
-     label = 84;
-     break L86;
-    }
-    $332 = $fl$1$ & 2048;
-    $333 = ($332|0)==(0);
-    if ($333) {
-     $334 = $fl$1$ & 1;
-     $335 = ($334|0)==(0);
-     $$ = $335 ? 8064 : (8066);
-     $336 = $291;$338 = $264;$pl$0 = $334;$prefix$0 = $$;
-     label = 84;
-    } else {
-     $336 = $291;$338 = $264;$pl$0 = 1;$prefix$0 = (8065);
-     label = 84;
-    }
-    break;
-   }
-   case 110:  {
-    switch ($st$0$lcssa456|0) {
-    case 0:  {
-     $265 = $264;
-     HEAP32[$265>>2] = $cnt$1;
-     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
-     continue L1;
-     break;
-    }
-    case 7:  {
-     $279 = ($cnt$1|0)<(0);
-     $280 = $279 << 31 >> 31;
-     $281 = $264;
-     $282 = $281;
-     $283 = $282;
-     HEAP32[$283>>2] = $cnt$1;
-     $284 = (($282) + 4)|0;
-     $285 = $284;
-     HEAP32[$285>>2] = $280;
-     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
-     continue L1;
-     break;
-    }
-    case 2:  {
-     $267 = ($cnt$1|0)<(0);
-     $268 = $267 << 31 >> 31;
-     $269 = $264;
-     $270 = $269;
-     $271 = $270;
-     HEAP32[$271>>2] = $cnt$1;
-     $272 = (($270) + 4)|0;
-     $273 = $272;
-     HEAP32[$273>>2] = $268;
-     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
-     continue L1;
-     break;
-    }
-    case 3:  {
-     $274 = $cnt$1&65535;
-     $275 = $264;
-     HEAP16[$275>>1] = $274;
-     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
-     continue L1;
-     break;
-    }
-    case 4:  {
-     $276 = $cnt$1&255;
-     $277 = $264;
-     HEAP8[$277>>0] = $276;
-     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
-     continue L1;
-     break;
-    }
-    case 6:  {
-     $278 = $264;
-     HEAP32[$278>>2] = $cnt$1;
-     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
-     continue L1;
-     break;
-    }
-    case 1:  {
-     $266 = $264;
-     HEAP32[$266>>2] = $cnt$1;
-     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
-     continue L1;
-     break;
-    }
-    default: {
-     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
-     continue L1;
-    }
-    }
-    break;
-   }
    case 109:  {
     $379 = (___errno_location()|0);
     $380 = HEAP32[$379>>2]|0;
@@ -33265,6 +33256,80 @@ function _printf_core($f,$fmt,$ap,$nl_arg,$nl_type) {
     } else {
      $1179 = $391;$1180 = $264;$p$4272 = $p$0;
      label = 97;
+    }
+    break;
+   }
+   case 110:  {
+    switch ($st$0$lcssa456|0) {
+    case 2:  {
+     $267 = ($cnt$1|0)<(0);
+     $268 = $267 << 31 >> 31;
+     $269 = $264;
+     $270 = $269;
+     $271 = $270;
+     HEAP32[$271>>2] = $cnt$1;
+     $272 = (($270) + 4)|0;
+     $273 = $272;
+     HEAP32[$273>>2] = $268;
+     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
+     continue L1;
+     break;
+    }
+    case 3:  {
+     $274 = $cnt$1&65535;
+     $275 = $264;
+     HEAP16[$275>>1] = $274;
+     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
+     continue L1;
+     break;
+    }
+    case 7:  {
+     $279 = ($cnt$1|0)<(0);
+     $280 = $279 << 31 >> 31;
+     $281 = $264;
+     $282 = $281;
+     $283 = $282;
+     HEAP32[$283>>2] = $cnt$1;
+     $284 = (($282) + 4)|0;
+     $285 = $284;
+     HEAP32[$285>>2] = $280;
+     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
+     continue L1;
+     break;
+    }
+    case 4:  {
+     $276 = $cnt$1&255;
+     $277 = $264;
+     HEAP8[$277>>0] = $276;
+     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
+     continue L1;
+     break;
+    }
+    case 6:  {
+     $278 = $264;
+     HEAP32[$278>>2] = $cnt$1;
+     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
+     continue L1;
+     break;
+    }
+    case 0:  {
+     $265 = $264;
+     HEAP32[$265>>2] = $cnt$1;
+     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
+     continue L1;
+     break;
+    }
+    case 1:  {
+     $266 = $264;
+     HEAP32[$266>>2] = $cnt$1;
+     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
+     continue L1;
+     break;
+    }
+    default: {
+     $1169 = $291;$1170 = $264;$23 = $$lcssa457;$cnt$0 = $cnt$1;$l$0 = $37;$l10n$0 = $l10n$3;
+     continue L1;
+    }
     }
     break;
    }
@@ -34765,11 +34830,6 @@ function _printf_core($f,$fmt,$ap,$nl_arg,$nl_type) {
     continue L1;
     break;
    }
-   case 117:  {
-    $336 = $291;$338 = $264;$pl$0 = 0;$prefix$0 = 8064;
-    label = 84;
-    break;
-   }
    default: {
     $1175 = $291;$1176 = $264;$a$2 = $23;$fl$6 = $fl$1$;$p$5 = $p$0;$pl$2 = 0;$prefix$2 = 8064;$z$2 = $2;
    }
@@ -36010,7 +36070,7 @@ var FUNCTION_TABLE_iiii = [b0,_sn_write];
 var FUNCTION_TABLE_viiiii = [b1];
 var FUNCTION_TABLE_iiiiidi = [b2];
 
-  return { _fann_set_activation_function_hidden: _fann_set_activation_function_hidden, _fann_set_quickprop_mu: _fann_set_quickprop_mu, _fann_reset_errno: _fann_reset_errno, _fann_set_cascade_weight_multiplier: _fann_set_cascade_weight_multiplier, _fann_set_input_scaling_params: _fann_set_input_scaling_params, _fann_get_layer_array: _fann_get_layer_array, _bitshift64Lshr: _bitshift64Lshr, _fann_test_data: _fann_test_data, _fann_set_sarprop_step_error_threshold_factor: _fann_set_sarprop_step_error_threshold_factor, _fann_get_cascade_candidate_stagnation_epochs: _fann_get_cascade_candidate_stagnation_epochs, _fann_get_cascade_candidate_change_fraction: _fann_get_cascade_candidate_change_fraction, _fann_get_quickprop_mu: _fann_get_quickprop_mu, _fann_descale_train: _fann_descale_train, _fann_get_weights: _fann_get_weights, _fann_set_cascade_candidate_change_fraction: _fann_set_cascade_candidate_change_fraction, _memcpy: _memcpy, _fann_set_cascade_num_candidate_groups: _fann_set_cascade_num_candidate_groups, _fann_set_cascade_activation_steepnesses: _fann_set_cascade_activation_steepnesses, _fann_save: _fann_save, _fann_get_cascade_num_candidates: _fann_get_cascade_num_candidates, _fann_set_cascade_candidate_limit: _fann_set_cascade_candidate_limit, _fann_set_quickprop_decay: _fann_set_quickprop_decay, _fann_create_standard3: _fann_create_standard3, _fann_get_sarprop_step_error_threshold_factor: _fann_get_sarprop_step_error_threshold_factor, _fann_get_activation_function: _fann_get_activation_function, _fann_set_callback: _fann_set_callback, _fann_set_weight_array: _fann_set_weight_array, _fann_descale_input: _fann_descale_input, _fann_create_shortcut: _fann_create_shortcut, _fann_set_scaling_params: _fann_set_scaling_params, _fann_set_output_scaling_params: _fann_set_output_scaling_params, _fann_get_cascade_output_change_fraction: _fann_get_cascade_output_change_fraction, _fann_save_train: _fann_save_train, _free: _free, _fann_create_standard: _fann_create_standard, _fann_get_num_layers: _fann_get_num_layers, _fann_get_cascade_output_stagnation_epochs: _fann_get_cascade_output_stagnation_epochs, _fann_run: _fann_run, _fann_get_errno: _fann_get_errno, _fann_save_train_to_fixed: _fann_save_train_to_fixed, _fann_get_train_input: _fann_get_train_input, _fann_get_rprop_delta_zero: _fann_get_rprop_delta_zero, _fann_get_total_connections: _fann_get_total_connections, _fann_descale_output: _fann_descale_output, _fann_set_error_log: _fann_set_error_log, _fann_get_bit_fail_limit: _fann_get_bit_fail_limit, _fann_get_num_output: _fann_get_num_output, _fann_get_user_data: _fann_get_user_data, _i64Subtract: _i64Subtract, _fann_reset_MSE: _fann_reset_MSE, _fann_create_from_file: _fann_create_from_file, _fann_get_cascade_max_out_epochs: _fann_get_cascade_max_out_epochs, _fann_get_train_output: _fann_get_train_output, _fann_set_train_stop_function: _fann_set_train_stop_function, _fann_get_bit_fail: _fann_get_bit_fail, _fann_test: _fann_test, _fann_get_layer: _fann_get_layer, _fann_set_rprop_delta_zero: _fann_set_rprop_delta_zero, _fann_get_sarprop_temperature: _fann_get_sarprop_temperature, _fann_get_connection_rate: _fann_get_connection_rate, _fann_subset_train_data: _fann_subset_train_data, _fann_scale_train_data: _fann_scale_train_data, _fann_set_activation_steepness_output: _fann_set_activation_steepness_output, _fann_scale_data_to_range: _fann_scale_data_to_range, _fann_set_learning_momentum: _fann_set_learning_momentum, _fann_set_cascade_activation_functions: _fann_set_cascade_activation_functions, _fann_num_output_train_data: _fann_num_output_train_data, _fann_get_cascade_activation_steepnesses: _fann_get_cascade_activation_steepnesses, _fann_get_neuron_layer: _fann_get_neuron_layer, _fann_get_cascade_activation_steepnesses_count: _fann_get_cascade_activation_steepnesses_count, _fann_get_rprop_decrease_factor: _fann_get_rprop_decrease_factor, _fann_clear_scaling_params: _fann_clear_scaling_params, _fann_create_train_array: _fann_create_train_array, _fann_create_sparse_array: _fann_create_sparse_array, _fann_get_train_error_function: _fann_get_train_error_function, _fann_get_network_type: _fann_get_network_type, _fann_scale_input: _fann_scale_input, _fann_set_activation_function: _fann_set_activation_function, _fann_set_bit_fail_limit: _fann_set_bit_fail_limit, _fann_set_cascade_candidate_stagnation_epochs: _fann_set_cascade_candidate_stagnation_epochs, _fann_set_activation_steepness: _fann_set_activation_steepness, _fann_get_cascade_min_out_epochs: _fann_get_cascade_min_out_epochs, _fann_cascadetrain_on_file: _fann_cascadetrain_on_file, _fann_get_sarprop_step_error_shift: _fann_get_sarprop_step_error_shift, _fann_create_shortcut_array: _fann_create_shortcut_array, _fann_get_cascade_min_cand_epochs: _fann_get_cascade_min_cand_epochs, _bitshift64Shl: _bitshift64Shl, _fann_randomize_weights: _fann_randomize_weights, _fann_scale_output_train_data: _fann_scale_output_train_data, _fann_get_cascade_max_cand_epochs: _fann_get_cascade_max_cand_epochs, _fann_train: _fann_train, _memset: _memset, _fann_length_train_data: _fann_length_train_data, _fann_cascadetrain_on_data: _fann_cascadetrain_on_data, _fann_get_errstr: _fann_get_errstr, _fann_set_activation_function_output: _fann_set_activation_function_output, _fann_get_cascade_num_candidate_groups: _fann_get_cascade_num_candidate_groups, _fann_set_cascade_min_out_epochs: _fann_set_cascade_min_out_epochs, _fann_print_error: _fann_print_error, _fann_shuffle_train_data: _fann_shuffle_train_data, _fann_print_parameters: _fann_print_parameters, _fann_get_learning_momentum: _fann_get_learning_momentum, _fann_set_user_data: _fann_set_user_data, _fann_set_rprop_decrease_factor: _fann_set_rprop_decrease_factor, _fann_copy: _fann_copy, _fann_create_train: _fann_create_train, _fann_scale_output: _fann_scale_output, _fann_get_train_stop_function: _fann_get_train_stop_function, _fann_duplicate_train_data: _fann_duplicate_train_data, _fann_train_epoch: _fann_train_epoch, _fann_save_to_fixed: _fann_save_to_fixed, _fann_set_rprop_increase_factor: _fann_set_rprop_increase_factor, _fann_get_training_algorithm: _fann_get_training_algorithm, _fann_get_cascade_activation_functions_count: _fann_get_cascade_activation_functions_count, _fann_set_cascade_min_cand_epochs: _fann_set_cascade_min_cand_epochs, _strlen: _strlen, _fann_train_on_file: _fann_train_on_file, _fann_set_activation_steepness_hidden: _fann_set_activation_steepness_hidden, _fann_set_learning_rate: _fann_set_learning_rate, _fann_create_standard_array: _fann_create_standard_array, _fann_set_activation_function_layer: _fann_set_activation_function_layer, _memmove: _memmove, _fann_get_total_neurons: _fann_get_total_neurons, _fann_get_sarprop_weight_decay_shift: _fann_get_sarprop_weight_decay_shift, _fann_create_train_pointer_array: _fann_create_train_pointer_array, _fann_set_sarprop_weight_decay_shift: _fann_set_sarprop_weight_decay_shift, _fann_get_num_input: _fann_get_num_input, _fann_print_connections: _fann_print_connections, _fann_scale_input_train_data: _fann_scale_input_train_data, _fann_get_bias_array: _fann_get_bias_array, _fann_set_rprop_delta_max: _fann_set_rprop_delta_max, _fann_get_learning_rate: _fann_get_learning_rate, _fann_set_sarprop_step_error_shift: _fann_set_sarprop_step_error_shift, _fann_init_weights: _fann_init_weights, _fann_set_cascade_max_cand_epochs: _fann_set_cascade_max_cand_epochs, _fann_merge_train_data: _fann_merge_train_data, _fann_set_cascade_output_stagnation_epochs: _fann_set_cascade_output_stagnation_epochs, _fann_get_MSE: _fann_get_MSE, _fann_get_cascade_activation_functions: _fann_get_cascade_activation_functions, _fann_set_rprop_delta_min: _fann_set_rprop_delta_min, _fann_set_activation_steepness_layer: _fann_set_activation_steepness_layer, _fann_get_rprop_delta_min: _fann_get_rprop_delta_min, _fann_train_on_data: _fann_train_on_data, _fann_destroy: _fann_destroy, _fann_set_cascade_max_out_epochs: _fann_set_cascade_max_out_epochs, _fann_set_cascade_output_change_fraction: _fann_set_cascade_output_change_fraction, _fann_destroy_train: _fann_destroy_train, _fann_get_rprop_delta_max: _fann_get_rprop_delta_max, _fann_num_input_train_data: _fann_num_input_train_data, _fann_create_sparse: _fann_create_sparse, _fann_set_weights: _fann_set_weights, _fann_get_activation_steepness: _fann_get_activation_steepness, _i64Add: _i64Add, _fann_get_connection_array: _fann_get_connection_array, _fann_read_train_from_file: _fann_read_train_from_file, _fann_reset_errstr: _fann_reset_errstr, _fann_create_sparse3: _fann_create_sparse3, _fann_get_neuron: _fann_get_neuron, _fann_set_training_algorithm: _fann_set_training_algorithm, _fann_create_train_from_callback: _fann_create_train_from_callback, _fann_get_rprop_increase_factor: _fann_get_rprop_increase_factor, _fann_get_cascade_weight_multiplier: _fann_get_cascade_weight_multiplier, _fann_get_quickprop_decay: _fann_get_quickprop_decay, _fann_create_shortcut3: _fann_create_shortcut3, _strcpy: _strcpy, _fann_set_weight: _fann_set_weight, _malloc: _malloc, _fann_set_sarprop_temperature: _fann_set_sarprop_temperature, _fann_get_cascade_candidate_limit: _fann_get_cascade_candidate_limit, _fann_set_train_error_function: _fann_set_train_error_function, _fann_scale_train: _fann_scale_train, runPostSets: runPostSets, stackAlloc: stackAlloc, stackSave: stackSave, stackRestore: stackRestore, setThrew: setThrew, setTempRet0: setTempRet0, getTempRet0: getTempRet0, dynCall_iiii: dynCall_iiii, dynCall_viiiii: dynCall_viiiii, dynCall_iiiiidi: dynCall_iiiiidi };
+  return { _fann_set_activation_function_hidden: _fann_set_activation_function_hidden, _fann_set_quickprop_mu: _fann_set_quickprop_mu, _fann_reset_errno: _fann_reset_errno, _fann_set_cascade_weight_multiplier: _fann_set_cascade_weight_multiplier, _fann_set_input_scaling_params: _fann_set_input_scaling_params, _fann_get_layer_array: _fann_get_layer_array, _bitshift64Lshr: _bitshift64Lshr, _fann_test_data: _fann_test_data, _fann_set_sarprop_step_error_threshold_factor: _fann_set_sarprop_step_error_threshold_factor, _fann_get_cascade_candidate_stagnation_epochs: _fann_get_cascade_candidate_stagnation_epochs, _fann_get_cascade_candidate_change_fraction: _fann_get_cascade_candidate_change_fraction, _fann_get_quickprop_mu: _fann_get_quickprop_mu, _fann_descale_train: _fann_descale_train, _fann_get_weights: _fann_get_weights, _fann_set_cascade_candidate_change_fraction: _fann_set_cascade_candidate_change_fraction, _fann_create_array_8: _fann_create_array_8, _memcpy: _memcpy, _fann_set_cascade_num_candidate_groups: _fann_set_cascade_num_candidate_groups, _fann_set_cascade_activation_steepnesses: _fann_set_cascade_activation_steepnesses, _fann_save: _fann_save, _fann_get_cascade_num_candidates: _fann_get_cascade_num_candidates, _fann_set_cascade_candidate_limit: _fann_set_cascade_candidate_limit, _fann_set_quickprop_decay: _fann_set_quickprop_decay, _fann_get_sarprop_step_error_threshold_factor: _fann_get_sarprop_step_error_threshold_factor, _fann_get_activation_function: _fann_get_activation_function, _fann_set_callback: _fann_set_callback, _fann_set_weight_array: _fann_set_weight_array, _fann_descale_input: _fann_descale_input, _fann_create_shortcut: _fann_create_shortcut, _fann_set_scaling_params: _fann_set_scaling_params, _fann_set_output_scaling_params: _fann_set_output_scaling_params, _fann_get_cascade_output_change_fraction: _fann_get_cascade_output_change_fraction, _fann_save_train: _fann_save_train, _free: _free, _fann_create_standard: _fann_create_standard, _fann_get_num_layers: _fann_get_num_layers, _fann_get_cascade_output_stagnation_epochs: _fann_get_cascade_output_stagnation_epochs, _fann_run: _fann_run, _fann_get_errno: _fann_get_errno, _fann_save_train_to_fixed: _fann_save_train_to_fixed, _fann_get_train_input: _fann_get_train_input, _fann_get_rprop_delta_zero: _fann_get_rprop_delta_zero, _fann_get_total_connections: _fann_get_total_connections, _fann_descale_output: _fann_descale_output, _fann_set_error_log: _fann_set_error_log, _fann_get_bit_fail_limit: _fann_get_bit_fail_limit, _fann_get_num_output: _fann_get_num_output, _fann_get_user_data: _fann_get_user_data, _i64Subtract: _i64Subtract, _fann_reset_MSE: _fann_reset_MSE, _fann_create_from_file: _fann_create_from_file, _fann_get_cascade_max_out_epochs: _fann_get_cascade_max_out_epochs, _fann_get_train_output: _fann_get_train_output, _fann_set_train_stop_function: _fann_set_train_stop_function, _fann_get_bit_fail: _fann_get_bit_fail, _fann_test: _fann_test, _fann_get_layer: _fann_get_layer, _fann_set_rprop_delta_zero: _fann_set_rprop_delta_zero, _fann_get_sarprop_temperature: _fann_get_sarprop_temperature, _fann_get_connection_rate: _fann_get_connection_rate, _fann_subset_train_data: _fann_subset_train_data, _fann_scale_train_data: _fann_scale_train_data, _fann_set_activation_steepness_output: _fann_set_activation_steepness_output, _fann_scale_data_to_range: _fann_scale_data_to_range, _fann_set_learning_momentum: _fann_set_learning_momentum, _fann_set_cascade_activation_functions: _fann_set_cascade_activation_functions, _fann_num_output_train_data: _fann_num_output_train_data, _fann_get_cascade_activation_steepnesses: _fann_get_cascade_activation_steepnesses, _fann_get_neuron_layer: _fann_get_neuron_layer, _fann_get_cascade_activation_steepnesses_count: _fann_get_cascade_activation_steepnesses_count, _fann_get_rprop_decrease_factor: _fann_get_rprop_decrease_factor, _fann_clear_scaling_params: _fann_clear_scaling_params, _fann_create_train_array: _fann_create_train_array, _fann_create_sparse_array: _fann_create_sparse_array, _fann_get_train_error_function: _fann_get_train_error_function, _fann_get_network_type: _fann_get_network_type, _fann_scale_input: _fann_scale_input, _fann_set_activation_function: _fann_set_activation_function, _fann_set_bit_fail_limit: _fann_set_bit_fail_limit, _fann_set_cascade_candidate_stagnation_epochs: _fann_set_cascade_candidate_stagnation_epochs, _fann_set_activation_steepness: _fann_set_activation_steepness, _fann_get_cascade_min_out_epochs: _fann_get_cascade_min_out_epochs, _fann_cascadetrain_on_file: _fann_cascadetrain_on_file, _fann_get_sarprop_step_error_shift: _fann_get_sarprop_step_error_shift, _fann_create_shortcut_array: _fann_create_shortcut_array, _fann_get_cascade_min_cand_epochs: _fann_get_cascade_min_cand_epochs, _bitshift64Shl: _bitshift64Shl, _fann_randomize_weights: _fann_randomize_weights, _fann_scale_output_train_data: _fann_scale_output_train_data, _fann_get_cascade_max_cand_epochs: _fann_get_cascade_max_cand_epochs, _fann_train: _fann_train, _memset: _memset, _fann_length_train_data: _fann_length_train_data, _fann_cascadetrain_on_data: _fann_cascadetrain_on_data, _fann_get_errstr: _fann_get_errstr, _fann_set_activation_function_output: _fann_set_activation_function_output, _fann_get_cascade_num_candidate_groups: _fann_get_cascade_num_candidate_groups, _fann_set_cascade_min_out_epochs: _fann_set_cascade_min_out_epochs, _fann_print_error: _fann_print_error, _fann_shuffle_train_data: _fann_shuffle_train_data, _fann_print_parameters: _fann_print_parameters, _fann_get_learning_momentum: _fann_get_learning_momentum, _fann_set_user_data: _fann_set_user_data, _fann_set_rprop_decrease_factor: _fann_set_rprop_decrease_factor, _fann_copy: _fann_copy, _fann_create_train: _fann_create_train, _fann_scale_output: _fann_scale_output, _fann_get_train_stop_function: _fann_get_train_stop_function, _fann_duplicate_train_data: _fann_duplicate_train_data, _fann_train_epoch: _fann_train_epoch, _fann_save_to_fixed: _fann_save_to_fixed, _fann_set_rprop_increase_factor: _fann_set_rprop_increase_factor, _fann_get_training_algorithm: _fann_get_training_algorithm, _fann_get_cascade_activation_functions_count: _fann_get_cascade_activation_functions_count, _fann_set_cascade_min_cand_epochs: _fann_set_cascade_min_cand_epochs, _strlen: _strlen, _fann_train_on_file: _fann_train_on_file, _fann_set_activation_steepness_hidden: _fann_set_activation_steepness_hidden, _fann_set_learning_rate: _fann_set_learning_rate, _fann_create_standard_array: _fann_create_standard_array, _fann_set_activation_function_layer: _fann_set_activation_function_layer, _fann_get_total_neurons: _fann_get_total_neurons, _fann_get_sarprop_weight_decay_shift: _fann_get_sarprop_weight_decay_shift, _fann_create_train_pointer_array: _fann_create_train_pointer_array, _fann_set_sarprop_weight_decay_shift: _fann_set_sarprop_weight_decay_shift, _fann_get_num_input: _fann_get_num_input, _fann_print_connections: _fann_print_connections, _fann_scale_input_train_data: _fann_scale_input_train_data, _fann_get_bias_array: _fann_get_bias_array, _fann_set_rprop_delta_max: _fann_set_rprop_delta_max, _fann_get_learning_rate: _fann_get_learning_rate, _fann_set_sarprop_step_error_shift: _fann_set_sarprop_step_error_shift, _fann_init_weights: _fann_init_weights, _fann_set_cascade_max_cand_epochs: _fann_set_cascade_max_cand_epochs, _fann_merge_train_data: _fann_merge_train_data, _fann_set_cascade_output_stagnation_epochs: _fann_set_cascade_output_stagnation_epochs, _fann_get_MSE: _fann_get_MSE, _fann_get_cascade_activation_functions: _fann_get_cascade_activation_functions, _fann_set_rprop_delta_min: _fann_set_rprop_delta_min, _fann_set_activation_steepness_layer: _fann_set_activation_steepness_layer, _fann_get_rprop_delta_min: _fann_get_rprop_delta_min, _fann_train_on_data: _fann_train_on_data, _fann_destroy: _fann_destroy, _fann_set_cascade_max_out_epochs: _fann_set_cascade_max_out_epochs, _fann_set_cascade_output_change_fraction: _fann_set_cascade_output_change_fraction, _fann_destroy_train: _fann_destroy_train, _fann_get_rprop_delta_max: _fann_get_rprop_delta_max, _fann_num_input_train_data: _fann_num_input_train_data, _fann_create_sparse: _fann_create_sparse, _fann_set_weights: _fann_set_weights, _fann_get_activation_steepness: _fann_get_activation_steepness, _i64Add: _i64Add, _fann_get_connection_array: _fann_get_connection_array, _fann_read_train_from_file: _fann_read_train_from_file, _fann_reset_errstr: _fann_reset_errstr, _fann_get_neuron: _fann_get_neuron, _fann_set_training_algorithm: _fann_set_training_algorithm, _fann_create_train_from_callback: _fann_create_train_from_callback, _fann_get_rprop_increase_factor: _fann_get_rprop_increase_factor, _fann_get_cascade_weight_multiplier: _fann_get_cascade_weight_multiplier, _fann_get_quickprop_decay: _fann_get_quickprop_decay, _memmove: _memmove, _strcpy: _strcpy, _fann_set_weight: _fann_set_weight, _malloc: _malloc, _fann_set_sarprop_temperature: _fann_set_sarprop_temperature, _fann_get_cascade_candidate_limit: _fann_get_cascade_candidate_limit, _fann_set_train_error_function: _fann_set_train_error_function, _fann_scale_train: _fann_scale_train, runPostSets: runPostSets, stackAlloc: stackAlloc, stackSave: stackSave, stackRestore: stackRestore, setThrew: setThrew, setTempRet0: setTempRet0, getTempRet0: getTempRet0, dynCall_iiii: dynCall_iiii, dynCall_viiiii: dynCall_viiiii, dynCall_iiiiidi: dynCall_iiiiidi };
 })
 // EMSCRIPTEN_END_ASM
 (Module.asmGlobalArg, Module.asmLibraryArg, buffer);
@@ -36098,6 +36158,12 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real__fann_set_cascade_candidate_change_fraction.apply(null, arguments);
 };
 
+var real__fann_scale_output_train_data = asm["_fann_scale_output_train_data"]; asm["_fann_scale_output_train_data"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__fann_scale_output_train_data.apply(null, arguments);
+};
+
 var real__fann_set_cascade_num_candidate_groups = asm["_fann_set_cascade_num_candidate_groups"]; asm["_fann_set_cascade_num_candidate_groups"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
@@ -36126,12 +36192,6 @@ var real__fann_set_quickprop_decay = asm["_fann_set_quickprop_decay"]; asm["_fan
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real__fann_set_quickprop_decay.apply(null, arguments);
-};
-
-var real__fann_destroy = asm["_fann_destroy"]; asm["_fann_destroy"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__fann_destroy.apply(null, arguments);
 };
 
 var real__fann_train = asm["_fann_train"]; asm["_fann_train"] = function() {
@@ -36518,10 +36578,10 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real__fann_randomize_weights.apply(null, arguments);
 };
 
-var real__fann_scale_output_train_data = asm["_fann_scale_output_train_data"]; asm["_fann_scale_output_train_data"] = function() {
+var real__fann_create_array_8 = asm["_fann_create_array_8"]; asm["_fann_create_array_8"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__fann_scale_output_train_data.apply(null, arguments);
+return real__fann_create_array_8.apply(null, arguments);
 };
 
 var real__fann_get_cascade_max_cand_epochs = asm["_fann_get_cascade_max_cand_epochs"]; asm["_fann_get_cascade_max_cand_epochs"] = function() {
@@ -36722,12 +36782,6 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real__fann_set_activation_function_layer.apply(null, arguments);
 };
 
-var real__fann_create_shortcut3 = asm["_fann_create_shortcut3"]; asm["_fann_create_shortcut3"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__fann_create_shortcut3.apply(null, arguments);
-};
-
 var real__fann_get_total_neurons = asm["_fann_get_total_neurons"]; asm["_fann_get_total_neurons"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
@@ -36854,10 +36908,10 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real__fann_create_train_from_callback.apply(null, arguments);
 };
 
-var real__fann_create_standard3 = asm["_fann_create_standard3"]; asm["_fann_create_standard3"] = function() {
+var real__fann_destroy = asm["_fann_destroy"]; asm["_fann_destroy"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__fann_create_standard3.apply(null, arguments);
+return real__fann_destroy.apply(null, arguments);
 };
 
 var real__fann_set_cascade_max_out_epochs = asm["_fann_set_cascade_max_out_epochs"]; asm["_fann_set_cascade_max_out_epochs"] = function() {
@@ -36936,12 +36990,6 @@ var real__fann_get_connection_array = asm["_fann_get_connection_array"]; asm["_f
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real__fann_get_connection_array.apply(null, arguments);
-};
-
-var real__fann_create_sparse3 = asm["_fann_create_sparse3"]; asm["_fann_create_sparse3"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__fann_create_sparse3.apply(null, arguments);
 };
 
 var real__fann_get_neuron = asm["_fann_get_neuron"]; asm["_fann_get_neuron"] = function() {
@@ -37029,13 +37077,13 @@ var _fann_get_quickprop_mu = Module["_fann_get_quickprop_mu"] = asm["_fann_get_q
 var _fann_descale_train = Module["_fann_descale_train"] = asm["_fann_descale_train"];
 var _fann_get_weights = Module["_fann_get_weights"] = asm["_fann_get_weights"];
 var _fann_set_cascade_candidate_change_fraction = Module["_fann_set_cascade_candidate_change_fraction"] = asm["_fann_set_cascade_candidate_change_fraction"];
+var _fann_scale_output_train_data = Module["_fann_scale_output_train_data"] = asm["_fann_scale_output_train_data"];
 var _memcpy = Module["_memcpy"] = asm["_memcpy"];
 var _fann_set_cascade_num_candidate_groups = Module["_fann_set_cascade_num_candidate_groups"] = asm["_fann_set_cascade_num_candidate_groups"];
 var _fann_set_cascade_activation_steepnesses = Module["_fann_set_cascade_activation_steepnesses"] = asm["_fann_set_cascade_activation_steepnesses"];
 var _fann_save = Module["_fann_save"] = asm["_fann_save"];
 var _fann_get_cascade_num_candidates = Module["_fann_get_cascade_num_candidates"] = asm["_fann_get_cascade_num_candidates"];
 var _fann_set_quickprop_decay = Module["_fann_set_quickprop_decay"] = asm["_fann_set_quickprop_decay"];
-var _fann_destroy = Module["_fann_destroy"] = asm["_fann_destroy"];
 var _fann_train = Module["_fann_train"] = asm["_fann_train"];
 var _fann_get_activation_function = Module["_fann_get_activation_function"] = asm["_fann_get_activation_function"];
 var _fann_set_callback = Module["_fann_set_callback"] = asm["_fann_set_callback"];
@@ -37102,7 +37150,7 @@ var _fann_get_sarprop_step_error_shift = Module["_fann_get_sarprop_step_error_sh
 var _fann_create_shortcut_array = Module["_fann_create_shortcut_array"] = asm["_fann_create_shortcut_array"];
 var _fann_get_cascade_min_cand_epochs = Module["_fann_get_cascade_min_cand_epochs"] = asm["_fann_get_cascade_min_cand_epochs"];
 var _fann_randomize_weights = Module["_fann_randomize_weights"] = asm["_fann_randomize_weights"];
-var _fann_scale_output_train_data = Module["_fann_scale_output_train_data"] = asm["_fann_scale_output_train_data"];
+var _fann_create_array_8 = Module["_fann_create_array_8"] = asm["_fann_create_array_8"];
 var _fann_get_cascade_max_cand_epochs = Module["_fann_get_cascade_max_cand_epochs"] = asm["_fann_get_cascade_max_cand_epochs"];
 var _fann_get_sarprop_step_error_threshold_factor = Module["_fann_get_sarprop_step_error_threshold_factor"] = asm["_fann_get_sarprop_step_error_threshold_factor"];
 var _fann_length_train_data = Module["_fann_length_train_data"] = asm["_fann_length_train_data"];
@@ -37137,7 +37185,6 @@ var _fann_set_activation_steepness_hidden = Module["_fann_set_activation_steepne
 var _fann_set_learning_rate = Module["_fann_set_learning_rate"] = asm["_fann_set_learning_rate"];
 var _fann_test = Module["_fann_test"] = asm["_fann_test"];
 var _fann_set_activation_function_layer = Module["_fann_set_activation_function_layer"] = asm["_fann_set_activation_function_layer"];
-var _fann_create_shortcut3 = Module["_fann_create_shortcut3"] = asm["_fann_create_shortcut3"];
 var _fann_get_total_neurons = Module["_fann_get_total_neurons"] = asm["_fann_get_total_neurons"];
 var _fann_get_sarprop_weight_decay_shift = Module["_fann_get_sarprop_weight_decay_shift"] = asm["_fann_get_sarprop_weight_decay_shift"];
 var _fann_create_train_pointer_array = Module["_fann_create_train_pointer_array"] = asm["_fann_create_train_pointer_array"];
@@ -37159,7 +37206,7 @@ var _fann_set_rprop_delta_min = Module["_fann_set_rprop_delta_min"] = asm["_fann
 var _fann_set_activation_steepness_layer = Module["_fann_set_activation_steepness_layer"] = asm["_fann_set_activation_steepness_layer"];
 var _fann_get_rprop_delta_min = Module["_fann_get_rprop_delta_min"] = asm["_fann_get_rprop_delta_min"];
 var _fann_create_train_from_callback = Module["_fann_create_train_from_callback"] = asm["_fann_create_train_from_callback"];
-var _fann_create_standard3 = Module["_fann_create_standard3"] = asm["_fann_create_standard3"];
+var _fann_destroy = Module["_fann_destroy"] = asm["_fann_destroy"];
 var _fann_set_cascade_max_out_epochs = Module["_fann_set_cascade_max_out_epochs"] = asm["_fann_set_cascade_max_out_epochs"];
 var _fann_set_cascade_output_change_fraction = Module["_fann_set_cascade_output_change_fraction"] = asm["_fann_set_cascade_output_change_fraction"];
 var _bitshift64Shl = Module["_bitshift64Shl"] = asm["_bitshift64Shl"];
@@ -37173,7 +37220,6 @@ var _fann_scale_data_to_range = Module["_fann_scale_data_to_range"] = asm["_fann
 var _fann_read_train_from_file = Module["_fann_read_train_from_file"] = asm["_fann_read_train_from_file"];
 var _fann_reset_errstr = Module["_fann_reset_errstr"] = asm["_fann_reset_errstr"];
 var _fann_get_connection_array = Module["_fann_get_connection_array"] = asm["_fann_get_connection_array"];
-var _fann_create_sparse3 = Module["_fann_create_sparse3"] = asm["_fann_create_sparse3"];
 var _fann_get_neuron = Module["_fann_get_neuron"] = asm["_fann_get_neuron"];
 var _fann_set_training_algorithm = Module["_fann_set_training_algorithm"] = asm["_fann_set_training_algorithm"];
 var _fann_get_rprop_increase_factor = Module["_fann_get_rprop_increase_factor"] = asm["_fann_get_rprop_increase_factor"];
@@ -39077,3 +39123,5 @@ run();
 
 
 
+
+Module.FS=FS;
